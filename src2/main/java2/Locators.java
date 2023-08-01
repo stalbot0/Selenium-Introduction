@@ -24,12 +24,26 @@ public class Locators {
 //        itself to print all the elements that have that selector. If it could not be identified it will give you a
 //        null response
         driver.findElement(By.linkText("Forgot your password?")).click();
+//        using Thread.sleep allows us to delay the actions after the click. Try/catch is needed bc the thread may be
+//        interrupted by another thread and will have to throw an exception
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            System.out.println(e.getMessage());
+        }
 //        introducing Xpath
 //        ^^^ if we do not have a tool such as selectors hub, we can use something like
 //        <$x('//input[@placeholder="Name"]')> in the console itself to print all the elements that have that selector.
 //        If it could not be identified it will give you a null response
         driver.findElement(By.xpath("//input[@placeholder='Name']")).sendKeys("Stephen");
-        driver.findElement(By.xpath("//input[@placeholder='Email']")).sendKeys("email@gmail.com");
-        driver.findElement(By.xpath("//input[@placeholder='Phone Number']")).sendKeys("555-555-5555");
+        driver.findElement(By.cssSelector("input[placeholder='Email']")).sendKeys("email@gmail.com");
+//        we can use the index of the type=text input if we have no unique identifier, as we did below with xpath
+        driver.findElement(By.xpath("//input[@type='text'][2]")).clear();
+//        use <input[type='text']:nth-child(3)> as a css selector to access the email as well
+        driver.findElement(By.cssSelector("input[type='text']:nth-child(3)")).sendKeys("email2222@gmail.com");
+        driver.findElement(By.xpath("//form/input[3]")).sendKeys("555-555-5555");
+//        we need to make this click wait so that we can have the reset login
+        driver.findElement(By.cssSelector(".reset-pwd-btn")).click();
+        System.out.println(driver.findElement(By.cssSelector("form p")).getText());
     }
 }
