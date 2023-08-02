@@ -10,7 +10,7 @@ public class Locators {
         WebDriver driver = new ChromeDriver();
 //        telling Selenium to wait implicitly for 5 seconds if something does not show up right away.
 //        Synchronization issues fixed with this
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5)); // waiting for objects to show on the page
         driver.get("https://rahulshettyacademy.com/locatorspractice/");
 //        inputting username/password into our fields using the targeted selectors and clicking on the sign in btn
         driver.findElement(By.id("inputUsername")).sendKeys("Stephen");
@@ -27,9 +27,10 @@ public class Locators {
 //        using Thread.sleep allows us to delay the actions after the click. Try/catch is needed bc the thread may be
 //        interrupted by another thread and will have to throw an exception
         try {
-            Thread.sleep(1000);
+            Thread.sleep(1000); // waiting for something to get in a stable state
         } catch (InterruptedException e) {
             System.out.println(e.getMessage());
+            System.out.println("trying to make it to the forgot your password section");
         }
 //        introducing Xpath
 //        ^^^ if we do not have a tool such as selectors hub, we can use something like
@@ -45,5 +46,18 @@ public class Locators {
 //        we need to make this click wait so that we can have the reset login
         driver.findElement(By.cssSelector(".reset-pwd-btn")).click();
         System.out.println(driver.findElement(By.cssSelector("form p")).getText());
+
+        driver.findElement(By.cssSelector("button.go-to-login-btn")).click();
+        try {
+            Thread.sleep(1000); // waiting for something to get in a stable state
+        } catch (InterruptedException e) {
+            System.out.println(e.getMessage());
+            System.out.println("trying to make it to the login section");
+        }
+        driver.findElement(By.cssSelector("#inputUsername")).sendKeys("Stephen");
+//        using regex to check for anything that has a type with 'pass'.... to start
+        driver.findElement(By.cssSelector("input[type*='pass']")).sendKeys("rahulshettyacademy");
+        driver.findElement(By.id("chkboxOne")).click();
+        driver.findElement(By.xpath("//button[contains(@class,'signInBtn')]")).click();
     }
 }

@@ -1,9 +1,7 @@
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 
-public class Main {
+public class WebDriverIntroduction {
     public static void main(String[] args) {
 //        Chrome
 //        WebDriver interface that directs what the drivers can do
