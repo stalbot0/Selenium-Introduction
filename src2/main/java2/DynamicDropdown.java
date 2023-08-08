@@ -12,7 +12,7 @@ public class DynamicDropdown {
         driver.findElement(By.xpath("//a[@value='BLR']")).click();
         Thread.sleep(2000); // usually use a try catch but just throwing it from the main method
 //        by adding the parentheses, we can select the index outside to select which we would like to utilize
-        driver.findElement(By.xpath("(//a[@value='MAA'])2")).click();
+//        driver.findElement(By.xpath("(//a[@value='MAA'])2")).click();
 
 //        if we want to do the same thing without indexes, we can use parent/child traversal
         driver.findElement(By.xpath("//div[@id='g1sct100_mainContent_dd1_destinationStation1_CTNR'] //a[@value='MAA']")).click();
