@@ -12,7 +12,7 @@ public class eCommerceBase {
         driver.get("https://rahulshettyacademy.com/seleniumPractise/#/");
         Thread.sleep(3000);
 //        let's add cucumber or broccoli
-        String[] vegetablesToTest = {"Cucumber", "Brocolli", "Beetroot"};
+        String[] vegetablesToTest = {"Cucumber", "Brocolli", "Beetroot", "Carrot"};
         List<WebElement> vegetableOptions = driver.findElements(By.cssSelector("h4.product-name"));
         int clickCount = 0;
 
@@ -25,7 +25,7 @@ public class eCommerceBase {
             if (newList.contains(formattedVeggieName)) {
                 driver.findElements(By.xpath("//div[@class='product-action']/button")).get(i).click();
                 clickCount++;
-                if (clickCount == 3) {
+                if (clickCount == vegetablesToTest.length) {
                     break;
                 }
             }
