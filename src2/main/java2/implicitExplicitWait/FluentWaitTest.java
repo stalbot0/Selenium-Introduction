@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.Wait;
 import java.time.Duration;
 import java.util.function.Function;
 
-public class fluentWaitTest {
+public class FluentWaitTest {
     public static void main(String[] args) {
         WebDriver driver = new ChromeDriver();
         driver.get("https://the-internet.herokuapp.com/dynamic_loading/1");
