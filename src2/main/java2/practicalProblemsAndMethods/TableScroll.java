@@ -5,6 +5,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 
 import java.util.List;
 
@@ -30,5 +31,11 @@ public class TableScroll {
         }
 
         System.out.println(sumOfTableAmounts);
+//        compare the amounts from the table to what we have added together
+        String totalAmountCollectedText = driver.findElement(By.cssSelector("div.totalAmount")).getText();
+        String[] amountTextToArray = totalAmountCollectedText.split(":");
+        int amountFromPage = Integer.parseInt(amountTextToArray[1].trim());
+        System.out.println(amountFromPage);
+        Assert.assertEquals(sumOfTableAmounts, amountFromPage);
     }
 }
