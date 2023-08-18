@@ -33,8 +33,7 @@ public class TableScroll {
         System.out.println(sumOfTableAmounts);
 //        compare the amounts from the table to what we have added together
         String totalAmountCollectedText = driver.findElement(By.cssSelector("div.totalAmount")).getText();
-        String[] amountTextToArray = totalAmountCollectedText.split(":");
-        int amountFromPage = Integer.parseInt(amountTextToArray[1].trim());
+        int amountFromPage = Integer.parseInt(totalAmountCollectedText.split(":")[1].trim());
         System.out.println(amountFromPage);
         Assert.assertEquals(sumOfTableAmounts, amountFromPage);
     }
