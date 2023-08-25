@@ -5,6 +5,8 @@ import org.testng.annotations.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class JavaStreamsTest {
@@ -69,9 +71,26 @@ public class JavaStreamsTest {
 //        namesConcatenated.sorted().forEach(System.out::println);
 
 //        we can use match to check if any names equal adam, it will assert true if the condition is met
+//        the match returns a boolean so this is how we can test against what we are streaming
         boolean flagTheName = namesConcatenated.anyMatch((s -> s.equalsIgnoreCase("AdAm")));
 //        if we were to assert false here it would throw an error, then we would have to debug
         Assert.assertTrue(flagTheName);
+    }
+
+    @Test
+    public void streamCollect() {
+        ArrayList<String> names = createFakeArrListOfNames();
+        System.out.println("streamCollect()");
+        List<String> newList = names.stream().filter(s -> s.endsWith("e"))
+                .map(String::toUpperCase).toList();//converting whatever is mapped to a new list
+//        then print the first name in the list
+        System.out.println(newList.get(0));
+
+//        print unique numbers from this array
+        List<Integer> randomNums = Arrays.asList(3, 2, 2, 7, 5, 1, 9, 7);
+//        print the third index in the unique list
+        List<Integer> uniqueList = randomNums.stream().sorted().distinct().toList();
+        System.out.println(uniqueList.get(2));
     }
 
     public static ArrayList<String> createFakeArrListOfNames() {
